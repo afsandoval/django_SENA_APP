@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ titulo }} - SENA APP{% endblock %}
+{% block title %}Lista de Aprendices SENA - SENA APP{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>{{ titulo }}</h2>
+            <h2>Lista de Aprendices SENA</h2>
             <div>
                 <span class="badge bg-info fs-6">Total: {{ total_aprendices }} aprendices</span>
                 <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="btn btn-success ms-2">
