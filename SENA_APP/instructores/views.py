@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from .models import Instructor
+
 # Create your views here.
 
 def instructores(request):
