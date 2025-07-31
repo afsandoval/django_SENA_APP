@@ -9,16 +9,22 @@
             <h1 class="display-4">Bienvenido a SENA APP</h1>
             <p class="lead">Sistema de Gestión de Aprendices del Servicio Nacional de Aprendizaje</p>
             <hr class="my-4">
-            <p>Administra y consulta la información de los aprendices de manera eficiente.</p>
+            <p>Administra y consulta la información de los aprendices e instructores de manera eficiente.</p>
             <a class="btn btn-light btn-lg" href="{% url 'aprendices:lista_aprendices' %}" role="button">
                 Ver Aprendices
+            </a>
+            <a class="btn btn-light btn-lg" href="{% url 'instructores:lista_instructores' %}" role="button">
+                Ver Instructores
+            </a>
+            <a class="btn btn-light btn-lg" href="{% url 'programas:lista_programas' %}" role="button">
+                Ver Programas
             </a>
         </div>
     </div>
 </div>
 
 <div class="row mt-4">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Lista de Aprendices</h5>
@@ -27,12 +33,21 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Panel Administrativo</h5>
-                <p class="card-text">Accede al panel para gestionar aprendices (crear, editar, eliminar).</p>
-                <a href="{% url 'admin:index' %}" class="btn btn-success">Ir al Panel</a>
+                <h5 class="card-title">Lista de Instructores</h5>
+                <p class="card-text">Consulta todos los instructores registrados en el sistema.</p>
+                <a href="{% url 'instructores:lista_instructores' %}" class="btn btn-success">Ver Lista</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Lista de Programas</h5>
+                <p class="card-text">Consulta todos los programas registrados en el sistema</p>
+                <a href="{% url 'programas:lista_programas' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>
     </div>
