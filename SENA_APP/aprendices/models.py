@@ -10,7 +10,6 @@ class Aprendiz(models.Model):
     fecha_nacimiento = models.DateField()
     ciudad = models.CharField(max_length=100, null=True)
     # programa = models.CharField(max_length=100)
-    fecha_registro = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Registro")
 
     class Meta:
         verbose_name = "Aprendiz"
