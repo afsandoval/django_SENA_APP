@@ -19,6 +19,9 @@
             <a class="btn btn-light btn-lg" href="{% url 'programas:lista_programas' %}" role="button">
                 Ver Programas
             </a>
+            <a class="btn btn-light btn-lg" href="{% url 'aprendices:lista_cursos' %}" role="button">
+                Ver Cursos
+            </a>
         </div>
     </div>
 </div>
@@ -48,6 +51,16 @@
                 <h5 class="card-title">Lista de Programas</h5>
                 <p class="card-text">Consulta todos los programas registrados en el sistema</p>
                 <a href="{% url 'programas:lista_programas' %}" class="btn btn-success">Ver Lista</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Lista de Cursos</h5>
+                <p class="card-text">Consulta todos los Cursos registrados en el sistema</p>
+                <a href="{% url 'aprendices:lista_cursos' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>
     </div>

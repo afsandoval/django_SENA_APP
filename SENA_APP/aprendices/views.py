@@ -36,7 +36,7 @@ def lista_cursos(request):
     template = loader.get_template('lista_cursos.html')
     
     context = {
-        'cursos': cursos,
+        'lista_cursos': cursos,
         'total_cursos': cursos.count(),
         'titulo': 'Lista de Cursos'
     }

@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Lista de Aprendices SENA - SENA APP{% endblock %}
+{% block title %}Lista de Cursos SENA - SENA APP{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Lista de Aprendices SENA</h2>
+            <h2>Lista de Cursos SENA</h2>
             <div>
-                <span class="badge bg-info fs-6">Total: {{ total_aprendices }} aprendices</span>
-                <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="btn btn-success ms-2">
-                    Nuevo Aprendiz
+                <span class="badge bg-info fs-6">Total: {{ total_cursos }} Cursos</span>
+                <a href="{% url 'admin:aprendices_curso_add' %}" class="btn btn-success ms-2">
+                    Nuevo Curso
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-{% if lista_aprendices %}
+{% if lista_cursos %}
 <div class="row">
     <div class="col-12">
         <div class="table-responsive">
@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for curso in cursos %}
+                    {% for curso in lista_cursos %}
                     <tr>
                         <td><strong>{{ curso.codigo }}</strong></td>
                         <td>{{ curso.nombre }}</td>
@@ -46,7 +46,7 @@
                         <td>{{ curso.horario }}</td>
                         <td>{{ curso.estado }}</td>
                         <td>
-                            <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" 
+                            <a href="{% url 'admin:aprendices_curso_change' curso.pk %}" 
                                class="btn btn-sm btn-outline-primary">
                                 Editar
                             </a>
@@ -63,11 +63,11 @@
     <div class="col-12">
         <div class="alert alert-info" role="alert">
             <h4 class="alert-heading">No hay Cursos registrados</h4>
-            <p>Aún no se han registrado aprendices en el sistema.</p>
+            <p>Aún no se han registrado Cursos en el sistema.</p>
             <hr>
             <p class="mb-0">
-                <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="btn btn-success">
-                    Registrar Primer Aprendiz
+                <a href="{% url 'admin:aprendices_curso_add' %}" class="btn btn-success">
+                    Registrar Primer Curso
                 </a>
             </p>
         </div>
