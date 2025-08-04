@@ -37,7 +37,7 @@
                 <tbody>
                     {% for curso in lista_cursos %}
                     <tr>
-                        <td><strong>{{ curso.codigo }}</strong></td>
+                        <td><strong><a href ="curso/{{ curso.id }}">{{ curso.codigo }}</a></strong></td>
                         <td>{{ curso.nombre }}</td>
                         <td>{{ curso.programa }}</td>
                         <td>{{ curso.instructor_coordinador }}</td>

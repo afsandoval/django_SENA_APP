@@ -32,6 +32,7 @@
             <div class="card-body">
                 <h5 class="card-title">Lista de Aprendices</h5>
                 <p class="card-text">Consulta todos los aprendices registrados en el sistema.</p>
+                <p class="card-text">Total de Aprendices: {{ total_aprendices}}</p>
                 <a href="{% url 'aprendices:lista_aprendices' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>
@@ -60,6 +61,8 @@
             <div class="card-body">
                 <h5 class="card-title">Lista de Cursos</h5>
                 <p class="card-text">Consulta todos los Cursos registrados en el sistema</p>
+                <p class="card-text">Total de Cursos: {{ total_cursos}}</p>
+                <p class="card-text">Cursos Activos: {{ cursos_activos}}</p>
                 <a href="{% url 'aprendices:lista_cursos' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>

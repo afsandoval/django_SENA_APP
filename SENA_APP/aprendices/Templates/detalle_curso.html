@@ -4,4 +4,27 @@
 
 {% block content %}
     <h1>Detalles del Curso</h1>
+
+    <h3>Codigo Curso: {{ curso.codigo }}- {{ curso.nombre }}</h3>
+  
+    <p>Lista de Aprendices en el Curso registrados:</p>
+
+        {% for aprendiz in aprendices_curso %}
+            <ul>
+                <li>{{ aprendiz}}</li>
+            </ul>
+        {% endfor %}
+
+
+    <p>Lista de Instructores en el Curso registrados:</p>
+
+        {% for instructor in instructores_curso %}
+            <ul>
+                <li>{{ instructor}}</li>
+            </ul>
+        {% endfor %}
+
+    <p>Back to <a href="/lista_cursos">Lista Cursos</a></p>
+
 {% endblock %}
+
