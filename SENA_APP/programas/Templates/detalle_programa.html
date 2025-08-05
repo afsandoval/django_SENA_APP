@@ -1,7 +1,228 @@
 {% extends 'base.html' %}
 
-{% block title %}Detalles Programas - SENA APP{% endblock %}
-
+{% block title %}Detalles Programa - SENA APP{% endblock %}
+    
 {% block content %}
-    <h1>Detalles del Programa</h1>
-{% endblock %}
+    <div class="container-fluid py-4">
+        <!-- Breadcrumb y Navegación -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'programas:lista_programas' %}" class="back-link">Lista Programas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ programa.nombre }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Información Principal del Programa -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="bi bi-diagram-3 me-2"></i>
+                        <h4 class="mb-0">Información del Programa de Formación</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2 class="text-primary mb-3">{{ programa.nombre }}</h2>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <p class="mb-2">
+                                            <strong><i class="bi bi-hash text-muted me-2"></i>Código:</strong>
+                                            <span class="badge badge-sena ms-2">{{ programa.codigo }}</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-2">
+                                            <strong><i class="bi bi-award text-muted me-2"></i>Nivel:</strong>
+                                            <span class="badge bg-info ms-2">{{ programa.get_nivel_formacion_display }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <p class="mb-2">
+                                            <strong><i class="bi bi-laptop text-muted me-2"></i>Modalidad:</strong>
+                                            <span class="badge bg-warning text-dark ms-2">{{ programa.get_modalidad_display }}</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-2">
+                                            <strong><i class="bi bi-geo-alt text-muted me-2"></i>Centro:</strong>
+                                            <span class="text-success">{{ programa.centro_formacion }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                {% if programa.regional %}
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <p class="mb-2">
+                                            <strong><i class="bi bi-map text-muted me-2"></i>Regional:</strong>
+                                            <span class="text-info">{{ programa.regional }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- Información Detallada -->
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <h5 class="mb-0">Detalles del Programa</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Duración -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-calendar-range me-2"></i>Duración del Programa
+                                    </h6>
+                                    <h4 class="text-primary mb-1">{{ programa.duracion_meses }} meses</h4>
+                                    <p class="mb-0 text-success">{{ programa.duracion_horas }} horas formación</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-calendar-plus me-2"></i>Fechas
+                                    </h6>
+                                    <p class="mb-1">
+                                        <i class="bi bi-calendar-check text-success me-2"></i>
+                                        Creación: {{ programa.fecha_creacion|date:"d/m/Y" }}
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="bi bi-calendar-event text-info me-2"></i>
+                                        Registro: {{ programa.fecha_registro|date:"d/m/Y" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        {% if programa.descripcion %}
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="bi bi-file-text me-2"></i>Descripción del Programa
+                            </h6>
+                            <div class="p-3 bg-light rounded">
+                                <p class="mb-0">{{ programa.descripcion }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Competencias -->
+                        {% if programa.competencias %}
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="bi bi-trophy me-2"></i>Competencias a Desarrollar
+                            </h6>
+                            <div class="p-3 bg-light rounded">
+                                <p class="mb-0">{{ programa.competencias }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Perfil de Egreso -->
+                        {% if programa.perfil_egreso %}
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="bi bi-person-check me-2"></i>Perfil de Egreso
+                            </h6>
+                            <div class="p-3 bg-light rounded">
+                                <p class="mb-0">{{ programa.perfil_egreso }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Requisitos de Ingreso -->
+                        {% if programa.requisitos_ingreso %}
+                        <div class="mb-0">
+                            <h6 class="text-muted mb-3">
+                                <i class="bi bi-list-check me-2"></i>Requisitos de Ingreso
+                            </h6>
+                            <div class="p-3 bg-light rounded">
+                                <p class="mb-0">{{ programa.requisitos_ingreso }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cursos del Programa -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-book me-2"></i>
+                            <h5 class="mb-0">Cursos del Programa</h5>
+                        </div>
+                        <span class="badge bg-white text-success">{{ cursos|length }} cursos</span>
+                    </div>
+                    <div class="card-body">
+                        {% if cursos %}
+                            <div class="row">
+                                {% for curso in cursos %}
+                                <div class="col-md-6 col-lg-4 mb-3">
+                                    <div class="card curso-card border-primary h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <div class="flex-grow-1">
+                                                    <h6 class="card-title text-primary mb-2">{{ curso.nombre }}</h6>
+                                                    <p class="card-text mb-2">
+                                                        <small class="text-muted">
+                                                            <i class="bi bi-hash me-1"></i>{{ curso.codigo }}
+                                                        </small>
+                                                    </p>
+                                                    {% if curso.descripcion %}
+                                                    <p class="card-text">
+                                                        <small class="text-muted">{{ curso.descripcion|truncatewords:15 }}</small>
+                                                    </p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">
+                                                    <i class="bi bi-calendar3 me-1"></i>
+                                                    {% if curso.fecha_inicio %}
+                                                        {{ curso.fecha_inicio|date:"M Y" }}
+                                                    {% else %}
+                                                        Por definir
+                                                    {% endif %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="text-center py-5">
+                                <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                                <h5 class="text-muted mt-3">No hay cursos registrados</h5>
+                                <p class="text-muted">Este programa aún no tiene cursos asociados</p>
+                                <button class="btn btn-outline-success">
+                                    <i class="bi bi-plus-circle me-1"></i>Agregar Primer Curso
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

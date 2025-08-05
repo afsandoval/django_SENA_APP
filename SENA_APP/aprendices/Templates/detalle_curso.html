@@ -1,30 +1,151 @@
 {% extends 'base.html' %}
 
-{% block title %}Detalles Cursos - SENA APP{% endblock %}
-
 {% block content %}
-    <h1>Detalles del Curso</h1>
+<div class="container-fluid py-4">
+    <!-- Breadcrumb y Navegación -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="/lista_cursos" class="back-link">Lista Cursos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Detalles del Curso</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 
-    <h3>Codigo Curso: {{ curso.codigo }}- {{ curso.nombre }}</h3>
-  
-    <p>Lista de Aprendices en el Curso registrados:</p>
+    <!-- Información Básica del Curso -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header d-flex align-items-center">
+                    <i class="bi bi-book-fill me-2"></i>
+                    <h4 class="mb-0">Información del Curso</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="text-primary mb-3">{{ curso.nombre }}</h2>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-2">
+                                        <strong><i class="bi bi-hash text-muted me-2"></i>Programa:</strong>
+                                        <span class="badge badge-sena ms-2">{{ curso.programa }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="mb-2">
+                                        <strong><i class="bi bi-hash text-muted me-2"></i>Código:</strong>
+                                        <span class="badge badge-sena ms-2">{{ curso.codigo }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="mb-2">
+                                        <strong><i class="bi bi-calendar-check text-muted me-2"></i>Estado:</strong>
+                                        <span class="badge bg-success ms-2">{{ curso.estado }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="mb-2">
+                                        <strong><i class="bi bi-calendar-check text-muted me-2"></i>Ambiente:</strong>
+                                        <span class="badge bg-success ms-2">{{ curso.aula }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            {% if curso.observaciones %}
+                            <div class="mt-3">
+                                <h6><i class="bi bi-info-circle text-muted me-2"></i>Observaciones:</h6>
+                                <p class="text-muted">{{ curso.observaciones }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-light rounded p-4">
+                                <i class="bi bi-mortarboard-fill text-success" style="font-size: 4rem;"></i>
+                                <h6 class="mt-2 text-muted"><strong>Horario:</strong> {{ curso.horario }}</h6>
+                            </div>
+                            <hr>
+                            <div class="bg-light rounded p-4">
+                                <i class="bi bi-mortarboard-fill text-success" style="font-size: 4rem;"></i>
+                                <h6 class="mt-2 text-muted"><strong>Fecha Inicio:</strong> {{ curso.fecha_inicio }}</h6>
+                                <h6 class="mt-2 text-muted"><strong>Fecha Finalización:</strong> {{ curso.fecha_fin }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        {% for aprendiz in aprendices_curso %}
-            <ul>
-                <li>{{ aprendiz}}</li>
-            </ul>
-        {% endfor %}
+    <div class="row">
+        <!-- Card de Aprendices -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-people-fill me-2"></i>
+                        <h5 class="mb-0">Aprendices Registrados</h5>
+                    </div>
+                    <span class="badge bg-white text-success">{{ aprendices_curso|length }} estudiantes</span>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for aprendiz in aprendices_curso %}
+                        <div class="list-group-item d-flex align-items-center px-0 border-0 border-bottom">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">{{ aprendiz }}</h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if aprendices_curso %}
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Lista de aprendices</small>
+                            <a href="{% url 'aprendices:lista_aprendices' %}" class="btn btn-sm btn-outline-success">
+                                <i class="bi bi-eye me-1"></i>Ver
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 
-
-    <p>Lista de Instructores en el Curso registrados:</p>
-
-        {% for instructor in instructores_curso %}
-            <ul>
-                <li>{{ instructor}}</li>
-            </ul>
-        {% endfor %}
-
-    <p>Back to <a href="/lista_cursos">Lista Cursos</a></p>
-
+        <!-- Card de Instructores -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-person-workspace me-2"></i>
+                        <h5 class="mb-0">Instructores del Curso</h5>
+                    </div>
+                    <span class="badge bg-white text-success">{{ instructores_curso|length }} instructores</span>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for instructor in instructores_curso %}
+                        <div class="list-group-item d-flex align-items-center px-0 border-0 border-bottom">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">{{ instructor }}</h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if instructores_curso %}
+                <div class="card-footer bg-transparent">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Lista de Instructores</small>
+                        <a href="{% url 'instructores:lista_instructores' %}" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-eye me-1"></i>Ver
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
-

@@ -37,7 +37,7 @@
                 <tbody>
                     {% for programa in lista_programas %}
                     <tr>
-                        <td><strong>{{ programa.codigo}}</strong></td>
+                        <td><strong><a href ="programa/{{ programa.id }}">{{ programa.codigo}}</a></strong></td>
                         <td>{{ programa.nombre }}</td>
                         <td>{{ programa.nivel_formacion }}</td>
                         <td>{{ programa.modalidad }}</td>
