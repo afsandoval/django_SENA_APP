@@ -42,6 +42,7 @@
             <div class="card-body">
                 <h5 class="card-title">Lista de Instructores</h5>
                 <p class="card-text">Consulta todos los instructores registrados en el sistema.</p>
+                <p class="card-text">Total de Instructores: {{ total_instructores}}</p>
                 <a href="{% url 'instructores:lista_instructores' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>
@@ -51,6 +52,7 @@
             <div class="card-body">
                 <h5 class="card-title">Lista de Programas</h5>
                 <p class="card-text">Consulta todos los programas registrados en el sistema</p>
+                <p class="card-text">Total de Programas: {{ total_programas}}</p>
                 <a href="{% url 'programas:lista_programas' %}" class="btn btn-success">Ver Lista</a>
             </div>
         </div>

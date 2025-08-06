@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Aprendiz, Curso
 from django.shortcuts import get_object_or_404
+from instructores.models import Instructor
+from programas.models import Programa
 
 # Create your views here.
 
@@ -18,6 +20,8 @@ def aprendices(request):
 def inicio(request):
     # Estadísticas generales
     total_aprendices = Aprendiz.objects.count()
+    total_instructores = Instructor.objects.count() 
+    total_programas = Programa.objects.count()
     total_cursos = Curso.objects.count()
     cursos_activos = Curso.objects.filter(estado__in=['INI', 'EJE']).count()
     template = loader.get_template('inicio.html')
@@ -26,6 +30,8 @@ def inicio(request):
         'total_aprendices': total_aprendices,
         'total_cursos': total_cursos,
         'cursos_activos': cursos_activos,
+        'total_instructores': total_instructores,
+        'total_programas': total_programas,
     }
     
     return HttpResponse(template.render(context, request))
@@ -53,6 +59,16 @@ def detalle_curso(request, curso_id):
         'curso': curso,
         'aprendices_curso': aprendices_curso,
         'instructores_curso': instructores_curso,
+    }
+    
+    return HttpResponse(template.render(context, request))
+
+def detalle_aprendiz(request, aprendiz_id):
+    aprendiz = get_object_or_404(Aprendiz, id=aprendiz_id)
+    template = loader.get_template('detalle_aprendiz.html')
+    
+    context = {
+        'aprendiz': aprendiz,
     }
     
     return HttpResponse(template.render(context, request))

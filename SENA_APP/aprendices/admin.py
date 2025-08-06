@@ -40,18 +40,18 @@ class AprendizAdmin(admin.ModelAdmin):
     nombre_completo.short_description = 'Nombre Completo'
 
 
-# Inlines para el admin de Cursos
+# Inlines para el admin de Cursos: Los inlines permiten editar modelos relacionados dentro del formulario del modelo principal. 
+# Es como tener "mini-formularios" integrados.
 class InstructorCursoInline(admin.TabularInline):
-    model = InstructorCurso
-    extra = 1
-    fields = ['instructor', 'rol']
+    model = InstructorCurso # ← Modelo de la tabla intermedia
+    extra = 1 # ← Cuántas filas vacías mostrar por defecto
+    fields = ['instructor', 'rol'] # ← Campos a mostrar en el inline
 
 
 class AprendizCursoInline(admin.TabularInline):
     model = AprendizCurso
-    extra = 0
+    extra = 0 # ← No mostrar filas vacías
     fields = ['aprendiz', 'estado', 'nota_final', 'observaciones']
-    readonly_fields = ['fecha_inscripcion']
 
 
 # Admin principal de Cursos
