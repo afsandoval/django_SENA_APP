@@ -25,3 +25,4 @@ def detalle_programa(request, programa_id):
     }
     
     return HttpResponse(template.render(context, request))
+
