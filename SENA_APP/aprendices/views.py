@@ -8,7 +8,6 @@ from programas.models import Programa
 
 from aprendices.forms import AprendizForm
 from django.views import generic
-from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -82,7 +81,8 @@ class AprendizFormView(generic.FormView):
     template_name = "agregar_aprendiz.html"
     form_class = AprendizForm
     success_url = "../aprendices/"
-    
+
+#Metodo para guardar el Formulario
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
