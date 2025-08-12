@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Aprendiz - SENA APP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-user-plus"></i> Agregar Aprendiz
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.documento_identidad.label }} <span class="text-danger">*</span></label>
+                            {{ form.documento_identidad }}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.nombre.label }} <span class="text-danger">*</span></label>
+                            {{ form.nombre }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.apellido.label }} <span class="text-danger">*</span></label>
+                            {{ form.apellido }}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.telefono.label }}</label>
+                            {{ form.telefono }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.correo.label }}</label>
+                            {{ form.correo }}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label>{{ form.fecha_nacimiento.label }} <span class="text-danger">*</span></label>
+                            {{ form.fecha_nacimiento }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label>{{ form.ciudad.label }}</label>
+                            {{ form.ciudad }}
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'aprendices:lista_aprendices' %}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar Aprendiz
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <small class="text-muted">
+                <i class="fas fa-info-circle"></i> 
+                Los campos marcados con <span class="text-danger">*</span> son obligatorios.
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- <form action="{% url "add_product" %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Enviar</button>
+</form> -->

@@ -1,9 +1,14 @@
 from django.http import HttpResponse
 from django.template import loader
+
 from .models import Aprendiz, Curso
 from django.shortcuts import get_object_or_404
 from instructores.models import Instructor
 from programas.models import Programa
+
+from aprendices.forms import AprendizForm
+from django.views import generic
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -72,4 +77,13 @@ def detalle_aprendiz(request, aprendiz_id):
     }
     
     return HttpResponse(template.render(context, request))
+
+class AprendizFormView(generic.FormView):
+    template_name = "agregar_aprendiz.html"
+    form_class = AprendizForm
+    success_url = "../aprendices/"
+    
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
